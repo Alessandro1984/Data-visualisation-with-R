@@ -1,6 +1,6 @@
 library(readxl)
 
-data_gdp <- read_excel("data_gdp.xlsx", 
+data_gdp <- read_excel("Lesson 2 - 25.04.2023/data_gdp.xlsx", 
                        sheet = "data", skip = 2)
 
 countries <- c("France", "Germany", "Italy", "Spain")
