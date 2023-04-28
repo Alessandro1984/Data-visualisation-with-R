@@ -180,6 +180,27 @@ my_fun_alternative <- function(x) x^2
 
 my_fun_alternative(x = 5)
 
+my_fun2 <- function(x, y) {
+  
+  to_power <- x^y
+  
+  return(to_power)
+  
+}
+
+my_fun2(x = 5, y = 2)
+
+# With default value for y
+my_fun2_alternative <- function(x, y = 2) {
+  
+  to_power <- x^y
+  
+  return(to_power)
+  
+}
+
+my_fun2_alternative(x = 5)
+
 my_fun <- function(time, scenarios) {
   
 r <- scenarios
