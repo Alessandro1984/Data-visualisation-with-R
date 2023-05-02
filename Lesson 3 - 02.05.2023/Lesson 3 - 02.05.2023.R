@@ -5,7 +5,7 @@ data_mpc <- read_excel("Lesson 3 - 02.05.2023/data_mpc.xlsx",
 
 countries <- unique(data_mpc$country)
 
-cols <- cols <- c("blue", "red", "green", "orange", "black", "purple")
+cols <- c("blue", "red", "green", "orange", "black", "purple")
 
 par(mfrow = c(2, 3))
 
