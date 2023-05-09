@@ -4,7 +4,7 @@ library(wooldridge)
 
 rm(list = ls())
 
-# Sctructure of the dataset ----
+# Structure of the dataset ----
 
 # We first take a look at the dataset
 View(wage1)
@@ -81,7 +81,7 @@ mean(wage1$educ[wage1$educ >= 15 & wage1$educ <= 18])
 rm(list = ls())
 library(corrplot)
 
-data_W <- wage1[, colnames(wage1) %in% c("wage", "educ", "exper", "tenure")]
+data_W <- wage1[, c("wage", "educ", "exper", "tenure")]
 
 data_W_corr <- cor(data_W)
 
