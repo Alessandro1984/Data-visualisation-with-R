@@ -12,7 +12,6 @@ gender <- c("Male", "Female")
 par(mfrow = c(1, 2))
 
 plot(NULL,
-     type = "n",
      xlim = c(min(wage1$educ), max(wage1$educ)), 
      ylim = c(min(wage1$wage), max(wage1$wage)),
      xlab = "Years of education", 
