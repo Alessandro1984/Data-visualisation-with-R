@@ -1,0 +1,100 @@
+---
+title: "Lesson - 5. 16.05.2023"
+author: "Alessandro Bramucci"
+output: pdf_document
+date: "16.05.2023"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Frequency distribution^[Exercise taken from Spiegel, M.R. Stephens, L.J. Statistics (Schaum's Outline Series).]
+
+The final grade in Mathematics of 80 students are recorded as follows:
+
+```{r}
+x <- c(68, 84, 75, 82, 68, 90, 62, 88, 76, 93,
+	73, 79, 88, 73, 60, 93, 71, 59, 85, 75,
+	61, 65, 75, 87, 74, 62, 95, 78, 63, 72,
+	66, 78, 82, 75, 94, 77, 69, 74, 68, 60,
+	96, 78, 89, 61, 75, 95, 60, 79, 83, 71,
+	79, 62, 67, 97, 78, 85, 76, 65, 71, 75,
+	65, 80, 73, 57, 88, 78, 62, 76, 53, 74,
+	86, 67, 73, 81, 72, 63, 76, 75, 85, 77)
+```
+
+\begin{gather}
+	68, 84, 75, 82, 68, 90, 62, 88, 76, 93, \nonumber \\
+	73, 79, 88, 73, 60, 93, 71, 59, 85, 75, \nonumber \\
+	61, 65, 75, 87, 74, 62, 95, 78, 63, 72, \nonumber \\
+	66, 78, 82, 75, 94, 77, 69, 74, 68, 60, \nonumber \\
+	96, 78, 89, 61, 75, 95, 60, 79, 83, 71, \nonumber \\
+	79, 62, 67, 97, 78, 85, 76, 65, 71, 75, \nonumber \\
+	65, 80, 73, 57, 88, 78, 62, 76, 53, 74, \nonumber \\
+	86, 67, 73, 81, 72, 63, 76, 75, 85, 77 \nonumber
+\end{gather}
+
+1) The highest grade.
+
+```{r}
+max(x)
+```
+
+2) The lowest grade.
+
+```{r}
+min(x)
+```
+
+3) The range.
+
+```{r}
+max(x) - min(x)
+```
+
+4) The grades of the five highest ranking students.
+
+```{r}
+x_sorted <- sort(x)
+x_sorted[(length(x_sorted)-4):length(x_sorted)]
+```
+
+5) The grades of the five lowest ranking students.
+
+```{r}
+x_sorted[1:5]
+```
+
+6) The grade of the tenth high ranking student.
+
+```{r}
+x_sorted[length(x_sorted)-9]
+```
+
+7) The number of students who received grades of 75 or higher.
+
+```{r}
+sum(x >= 75)
+```
+
+8) The number of students who received grades below 85.
+
+```{r}
+sum(x < 85)
+```
+
+9) The percentage of students who received grades higher than 65 but not higher than 85.
+
+```{r}
+sum(x > 65 & x <= 85) / length(x) * 100
+```
+
+10) Produce an histogram of the data.
+
+```{r}
+hist(x,
+     ylim = c(0, 20),
+     main = "Final grades in Mathematics (N = 80)",
+     xlab = "Grades")
+```
