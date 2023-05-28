@@ -1,11 +1,12 @@
 rm(list = ls())
 
+library(here)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(rdbnomics)
 
-source("Lesson 7 - 30.05.2023/functions.r")
+source(here("Lesson 7 - 30.05.2023/functions.r"))
 
 country_code <- c("D_W", "DEU", "FRA", "ITA", "NLD", "ESP", "USA")
 
@@ -15,7 +16,7 @@ df_rgdp <- rdb(ids = countries) %>%
   filter_function() %>% 
   germany_function()
 
-df_unemp <- readRDS("Lesson 6. - 23.05.2023/df_final.rds")
+df_unemp <- readRDS(here("Lesson 6. - 23.05.2023/df_final.rds"))
 
 df_final <- df_rgdp %>% 
   inner_join(df_unemp, by = c("Country", "Year")) %>% 
@@ -101,4 +102,3 @@ p3 <- ggplot(df_final_modified, aes(x = rgdp_gr,
        caption = "Source: AMECO data from dbnomics.")
 
 p3
-
