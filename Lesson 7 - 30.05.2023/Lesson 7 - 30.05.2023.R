@@ -73,7 +73,7 @@ p2 <- ggplot(df_final_modified, aes(x = rgdp_gr,
   labs(color = NULL,
        y = "Diff. unemployment rate, \n percentage points",
        x = "Growth rate real gdp, \n percent",
-       title = paste0("Okun’s law,", min(df_final$Year), "-", max(df_final$Year)),
+       title = paste0("Okun’s law,", min(df_final_modified$Year), "-", max(df_final_modified$Year)),
        caption = "Source: AMECO data from dbnomics.")
 
 p2
@@ -90,15 +90,13 @@ p3 <- ggplot(df_final_modified, aes(x = rgdp_gr,
   scale_color_manual(values = cols) +
   facet_wrap(~Country, 
              nrow = 2, 
-             strip.position = "top", 
              scales = "free") +
   theme(legend.position = "bottom",
-        strip.background = element_blank(), 
-        strip.placement = "outside") +
+        strip.background = element_blank()) +
   labs(color = NULL,
        y = "Diff. unemployment rate, \n percentage points",
        x = "Growth rate real gdp, \n percent",
-       title = paste0("Okun’s law,", min(df_final$Year), "-", max(df_final$Year)),
+       title = paste0("Okun’s law,", min(df_final_modified$Year), "-", max(df_final_modified$Year)),
        caption = "Source: AMECO data from dbnomics.")
 
 p3
