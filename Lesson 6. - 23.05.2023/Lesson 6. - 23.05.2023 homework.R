@@ -23,11 +23,9 @@ p3 <- ggplot(df_final, aes(x = Year,
                                    hjust = 1)) +
   scale_color_manual(values = cols) +
   facet_wrap(~Country, 
-             nrow = 2, 
-             strip.position = "top",
+             nrow = 2,
              scales = "free") +
   scale_x_continuous(breaks = seq(min(df_final$Year), max(df_final$Year), 10)) + 
-  theme(strip.background = element_blank(), 
-        strip.placement = "outside")
+  theme(strip.background = element_blank())
 
 p3
