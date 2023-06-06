@@ -13,7 +13,6 @@ knitr::opts_chunk$set(echo = TRUE,
                       message = FALSE,
                       warning = FALSE)
 
-library(readr)
 library(dplyr)
 library(ggplot2)
 library(gapminder)
@@ -67,7 +66,7 @@ gapminder %>%
 
 ```
 
-Figure 1 shows the existence of a positive relationship between log per capita income and life expectancy.
+Figure 1 shows the existence of a positive relationship between log per capita GDP and life expectancy.
 
 <!-- To cross-reference within the text use the bookdown output format in the YAML output field -->
 <!-- bookdown::pdf_document2: default.  -->
