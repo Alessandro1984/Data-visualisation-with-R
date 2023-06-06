@@ -23,26 +23,26 @@ for (c in 1:length(countries)) {
   
 }
 
-df_stats_slopes <- df_stats %>% 
+df_stats_slopes <- df_stats %>%
   mutate(abs_slopes = abs(slopes))
 
-cols <- c("Germany" = "blue", 
-          "Spain" = "red", 
-          "France" = "green", 
-          "United States" = "orange", 
-          "Italy" = "black", 
+cols <- c("Germany" = "blue",
+          "Spain" = "red",
+          "France" = "green",
+          "United States" = "orange",
+          "Italy" = "black",
           "Netherlands" = "purple")
 
 p1 <- ggplot(df_stats_slopes, aes(x = reorder(Country, -abs_slopes),
                                   y = abs_slopes,
                                   fill = Country)) +
   scale_fill_manual(values = cols) +
-  geom_bar(stat = "identity") + 
+  geom_col() +
   theme_bw() +
   labs(y = "Slope coefficient, percent \n (absolute value)") +
-  geom_text(aes(label = abs_slopes), 
-            vjust = 1.6, 
-            color = "white", 
+  geom_text(aes(label = abs_slopes),
+            vjust = 1.6,
+            color = "white",
             size = 3.5) +
   theme(axis.text.x = element_text(angle = 45,
                                    hjust = 1),
@@ -54,12 +54,12 @@ p2 <- ggplot(df_stats_slopes, aes(x = reorder(Country, -r_squared),
                                   y = r_squared,
                                   fill = Country)) +
   scale_fill_manual(values = cols) +
-  geom_bar(stat = "identity") + 
+  geom_col() +
   theme_bw() +
   labs(y = "R-Squared, percent") +
-  geom_text(aes(label = paste0(r_squared, "%")), 
-            vjust = 1.6, 
-            color = "white", 
+  geom_text(aes(label = paste0(r_squared, "%")),
+            vjust = 1.6,
+            color = "white",
             size = 3.5) +
   theme(axis.text.x = element_text(angle = 45,
                                    hjust = 1),
@@ -68,5 +68,4 @@ p2 <- ggplot(df_stats_slopes, aes(x = reorder(Country, -r_squared),
 p2
 
 # Using the patchwork package
-p1 + p2 + plot_layout(guides = "collect") & theme(legend.position = 'bottom',
-                                                  legend.title = element_blank())
+p1 + p2 + plot_layout(guides = "collect") & theme(legend.position = 'bottom')
