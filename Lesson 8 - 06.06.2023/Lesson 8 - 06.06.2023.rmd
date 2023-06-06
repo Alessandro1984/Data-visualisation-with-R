@@ -1,0 +1,74 @@
+---
+title: 'Lesson 8'
+subtitle: 'Data visualisation with R'
+author: "Alessandro Bramucci"
+date: "`r format(Sys.time(), '%d-%m-%Y')`"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(gapminder)
+library(kableExtra)
+
+```
+
+# Exploring the data
+
+```{r, include=FALSE}
+
+length(unique(gapminder$country))
+
+n_countries <- gapminder %>%
+  filter(year == 2007) %>%
+  summarise(n_country = n())
+
+```
+
+How many countries in the Gapminder dataset? In the Gapminder dataset there are `r n_countries` countries. How many countries per continent?
+
+```{r, echo = FALSE}
+gapminder %>% 
+  filter(year == 2007) %>% 
+  group_by(continent) %>% 
+  summarise(`Nr. country` = n()) %>% 
+  kbl(booktabs = T) %>% 
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+To customise your table using *KableExtra* take a look [here]([https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf) and [here](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
+
+# Visualise the data
+
+Is there a positive relationship between GDP per capita and life expectancy?
+
+```{r figure1, echo = FALSE, fig.align = "center", 	out.width = '80%',out.height = '30%', fig.cap = "Relationship between income per person and life expectancy, year 2007."}
+
+gapminder %>% 
+  filter(year == 2007) %>%
+  mutate(ln_gdpPercap = log(gdpPercap)) %>% 
+  ggplot(aes(x = ln_gdpPercap, 
+             y = lifeExp)) +
+  geom_point(aes(color = continent)) + 
+  geom_smooth(method = lm, se = FALSE) + 
+  theme_bw() + 
+    labs(color = NULL,
+         y = "Life expectancy at birth",
+         x = "Log GDP per capita (in $)",
+         caption = "Source: Gapminder.")
+
+```
+
+Figure 1 shows the existence of a positive relationship between log per capita income and life expectancy.
+
+<!-- To cross-reference within the text use the bookdown output format in the YAML output field -->
+<!-- bookdown::pdf_document2: default.  -->
+<!-- Take a look here https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html)  -->
