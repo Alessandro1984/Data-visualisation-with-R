@@ -43,7 +43,7 @@ gapminder %>%
   kable_styling(latex_options = c("striped", "hold_position"))
 ```
 
-To customise your table using *KableExtra* take a look [here]([https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf) and [here](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
+To customise your table using *KableExtra* take a look [here](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf) and [here](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
 
 # Visualise the data
 
