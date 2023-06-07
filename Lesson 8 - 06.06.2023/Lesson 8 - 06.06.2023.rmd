@@ -38,8 +38,9 @@ How many countries in the Gapminder dataset? In the Gapminder dataset there are 
 gapminder %>% 
   filter(year == 2007) %>% 
   group_by(continent) %>% 
-  summarise(`Nr. country` = n()) %>% 
-  kbl(booktabs = T) %>% 
+  summarise(`Nr. countries` = n()) %>% 
+  rename(Continent = continent) %>% 
+  kbl(booktabs = TRUE) %>% 
   kable_styling(latex_options = c("striped", "hold_position"))
 ```
 
@@ -49,7 +50,7 @@ To customise your table using *KableExtra* take a look [here](https://haozhu233.
 
 Is there a positive relationship between GDP per capita and life expectancy?
 
-```{r figure1, echo = FALSE, fig.align = "center", 	out.width = '80%',out.height = '30%', fig.cap = "Relationship between income per person and life expectancy, year 2007."}
+```{r figure1, echo = FALSE, fig.align = "center", 	out.width = '80%',out.height = '30%', fig.cap = "Relationship between per capita GDP and life expectancy, year 2007."}
 
 gapminder %>% 
   filter(year == 2007) %>%
@@ -69,5 +70,5 @@ gapminder %>%
 Figure 1 shows the existence of a positive relationship between log per capita GDP and life expectancy.
 
 <!-- To cross-reference within the text use the bookdown output format in the YAML output field -->
-<!-- bookdown::pdf_document2: default.  -->
+<!-- bookdown::pdf_document2: default  -->
 <!-- Take a look here https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html)  -->
