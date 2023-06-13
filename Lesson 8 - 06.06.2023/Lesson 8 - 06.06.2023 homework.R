@@ -10,7 +10,6 @@ cols <- c("Maximum" = "blue",
           "Median" = "orange",
           "China" = "black")
 
-
 # First solution ----
 df_plot <- gapminder %>% 
   group_by(year) %>% 
