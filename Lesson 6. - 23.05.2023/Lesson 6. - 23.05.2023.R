@@ -11,8 +11,7 @@ df_usa <- rdb(ids = "AMECO/ZUTN/USA.1.0.0.0.ZUTN") %>%
   mutate(Year = as.numeric(Year))
 
 p1 <- ggplot(df_usa, aes(x = Year, 
-                         y = value, 
-                         group = Country, 
+                         y = value,
                          color = Country)) +
   geom_line() +
   theme_bw() +
@@ -62,8 +61,7 @@ cols <- c("Germany" = "blue",
           "Netherlands" = "purple")
 
 p2 <- ggplot(df_final, aes(x = Year, 
-                           y = value, 
-                           group = Country, 
+                           y = value,
                            color = Country)) +
   scale_color_manual(values = cols) +
   geom_line() +
