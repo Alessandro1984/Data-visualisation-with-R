@@ -1,0 +1,86 @@
+---
+title: 'Lesson 9 - Homework'
+subtitle: 'Data visualisation with R'
+author: "Alessandro Bramucci"
+date: "`r format(Sys.time(), '%d-%m-%Y')`"
+output:
+  bookdown::pdf_document2:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(gapminder)
+library(kableExtra)
+
+```
+
+# World population by continent in 2007
+
+## Table
+
+Table \@ref(tab:table) reports population data by continent in 2007 as a percentage of the world's population.
+
+```{r, table}
+
+world_pop <- gapminder %>%
+  filter(year == 2007) %>%
+  summarise(w_pop = sum(pop))
+
+df_2007_pc <- gapminder %>% 
+  filter(year == 2007) %>%
+  group_by(continent) %>% 
+  summarise(`2007` = round(sum(pop)/as.numeric(world_pop) * 100, digits = 2))
+
+# For later use we exctract the value for Asia
+df_2007_pc_Asia <- df_2007_pc %>% 
+  filter(continent == "Asia")
+  
+table_2007 <- df_2007_pc %>% 
+  kbl(booktabs = TRUE,
+      align = "lr",
+      caption = "World population by continent, year 2007. Source: Gapminder.",
+      col.names = c("Continent",
+                    "Population (in %)")) %>% 
+  kable_styling(latex_options = c("hold_position"))
+
+table_2007
+  
+```
+
+\newpage
+
+## Pie chart
+
+```{r piechart, fig.cap = "World population by continent, year 2007. Source: Gapminder.", fig.align = "center", out.width = '80%', out.height = '30%'}
+
+# No need to calculate percentage values
+df_2007 <- gapminder %>% 
+  filter(year == 2007) %>% 
+  group_by(continent) %>% 
+  summarise(`2007` = sum(pop))
+
+ggplot(df_2007, aes(x = "x", 
+                    y = `2007`,
+                    fill = continent)) +
+        geom_bar(stat = "identity", 
+                 width = 1, 
+                 color = "white") +
+        coord_polar("y", 
+                    start = 0) + 
+        theme_void() +
+  scale_fill_manual(values = continent_colors) + 
+  theme(legend.position = "bottom") +
+  guides(fill = guide_legend(title = NULL))
+
+```
+
+From Figure \@ref(fig:piechart) we can see that Asia is the most populous continent. In 2007, the percentage of the population of the Asian continent represents `r paste0(as.numeric(df_2007_pc_Asia[2]),"%")` of the world's population.
