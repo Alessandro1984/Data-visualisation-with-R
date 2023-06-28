@@ -40,7 +40,7 @@ df_2007_pc <- gapminder %>%
   group_by(continent) %>% 
   summarise(`2007` = round(sum(pop)/as.numeric(world_pop) * 100, digits = 2))
 
-# For later use we exctract the value for Asia
+# For later use we extract the value for Asia
 df_2007_pc_Asia <- df_2007_pc %>% 
   filter(continent == "Asia")
   
