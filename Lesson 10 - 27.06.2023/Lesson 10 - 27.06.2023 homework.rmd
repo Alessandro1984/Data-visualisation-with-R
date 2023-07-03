@@ -1,0 +1,48 @@
+---
+title: 'Lesson 10 - Homework'
+subtitle: 'Data visualisation with R'
+author: "Alessandro Bramucci"
+date: "`r format(Sys.time(), '%d-%m-%Y')`"
+output:
+  bookdown::pdf_document2:
+    toc: false
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+
+library(dplyr)
+library(scales)
+library(ggplot2)
+library(gapminder)
+library(patchwork)
+
+```
+
+# Boxplot^[Tip: Use the R package *scale* to adjust the values of the y-axis in the right-hand side graph.] {-}
+
+```{r, fig.align = "center", fig.cap = "Distribution of life expectancy and GDP per capita by continent, 1952-2007. Source: Gapminder."}
+
+p1 <- ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_boxplot(fill = continent_colors) +
+  labs(y = "Life expectancy") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45,
+                                   hjust = 1),
+        axis.title.x = element_blank())
+
+p2 <- ggplot(gapminder, aes(x = continent, y = gdpPercap)) +
+  geom_boxplot(fill = continent_colors) +
+  labs(y = "Per capita GDP (in thou.)") +
+  theme_bw() +
+  scale_y_continuous(labels = function(x) x/1000) + 
+    theme(axis.text.x = element_text(angle = 45,
+                                   hjust = 1),
+        axis.title.x = element_blank())
+
+p1 + p2
+
+```
