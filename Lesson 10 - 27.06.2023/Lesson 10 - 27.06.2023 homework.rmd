@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo = FALSE,
                       warning = FALSE)
 
 library(dplyr)
+library(scales)
 library(ggplot2)
 library(gapminder)
 library(patchwork)
@@ -22,6 +23,8 @@ library(patchwork)
 ```
 
 # Boxplot^[Tip: Use the R package *scale* to adjust the values of the y-axis in the right-hand side graph.] {-}
+
+Some very long text.[^mynote] Some more text.^[Another footnote.]
 
 ```{r, fig.align = "center", fig.cap = "Distribution of life expectancy and GDP per capita by continent, 1952-2007. Source: Gapminder."}
 
@@ -37,14 +40,20 @@ p2 <- ggplot(gapminder, aes(x = continent, y = gdpPercap)) +
   geom_boxplot(fill = continent_colors) +
   labs(y = "Per capita GDP") +
   theme_bw() +
-  # Solution not using the scale package, just passing a function
+  # Solution 1) not using the scale package, just passing a function
   # scale_y_continuous(labels = function(x) x/1000) + 
-  # Solution using the scale package including "k" for thousands
-  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) + 
+  # Solution 2) same as above but using the scale package
+  # scale_y_continuous(labels = label_number(scale = 1/1000)) +
+  # Solution 3) Beate's solution using the scale package
+  # scale_y_continuous(labels = unit_format(unit = "K", scale = 1e-3))
+  # Solution 4) using the scale package with preprogrammed function
+  scale_y_continuous(labels = label_number(scale_cut = cut_short_scale())) + 
     theme(axis.text.x = element_text(angle = 45,
-                                   hjust = 1),
-        axis.title.x = element_blank())
+                                     hjust = 1),
+          axis.title.x = element_blank())
 
 p1 + p2
 
 ```
+
+[^mynote]: A footnote.
