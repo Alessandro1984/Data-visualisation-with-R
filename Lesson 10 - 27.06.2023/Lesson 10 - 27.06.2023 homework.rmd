@@ -15,7 +15,6 @@ knitr::opts_chunk$set(echo = FALSE,
                       warning = FALSE)
 
 library(dplyr)
-library(scales)
 library(ggplot2)
 library(gapminder)
 library(patchwork)
@@ -36,9 +35,12 @@ p1 <- ggplot(gapminder, aes(x = continent, y = lifeExp)) +
 
 p2 <- ggplot(gapminder, aes(x = continent, y = gdpPercap)) +
   geom_boxplot(fill = continent_colors) +
-  labs(y = "Per capita GDP (in thou.)") +
+  labs(y = "Per capita GDP") +
   theme_bw() +
-  scale_y_continuous(labels = function(x) x/1000) + 
+  # Solution not using the scale package, just passing a function
+  # scale_y_continuous(labels = function(x) x/1000) + 
+  # Solution using the scale package including "k" for thousands
+  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) + 
     theme(axis.text.x = element_text(angle = 45,
                                    hjust = 1),
         axis.title.x = element_blank())
