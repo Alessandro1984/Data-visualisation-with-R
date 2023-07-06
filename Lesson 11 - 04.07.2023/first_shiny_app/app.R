@@ -51,8 +51,6 @@ server <- function(input, output) {
   # Plot
   output$plot <- renderPlotly({
     
-    selected_country <- input$country
-    
     cols <- c("Maximum" = "blue", 
               "Minimum" = "red",
               "Median" = "orange",
