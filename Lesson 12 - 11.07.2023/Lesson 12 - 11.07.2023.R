@@ -3,7 +3,6 @@ rm(list = ls())
 library(dplyr)
 library(plotly)
 library(openxlsx)
-library(tidyverse)
 library(rdbnomics)
 
 country_code <- c("ITA", "FRA", "ESP", "DEU")
@@ -65,7 +64,7 @@ addWorksheet(my_data, sheetName = "SFB")
 # Write sheet
 writeData(my_data, 1, x = data_FS)
 
-# Save file
+# Save file (Change name of the folder!)
 saveWorkbook(my_data, 
              file = "Lesson 12 - 11.07.2023/data_FS.xlsx", 
              overwrite = TRUE)
