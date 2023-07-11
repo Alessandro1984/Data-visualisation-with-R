@@ -1,0 +1,14 @@
+name: homework_shiny_app2
+title: homework_shiny_app2
+username:
+account: alessandro
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9439476
+bundleId: 7443683
+url: https://alessandro.shinyapps.io/homework_shiny_app2/
+when: 1689073786.94455
+lastSyncTime: 1689073786.94456
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Lesson 12 - 11.07.2023 homework.R
