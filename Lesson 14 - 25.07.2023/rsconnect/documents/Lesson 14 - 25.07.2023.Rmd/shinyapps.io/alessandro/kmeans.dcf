@@ -1,0 +1,13 @@
+name: kmeans
+title: kmeans
+username:
+account: alessandro
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9505174
+bundleId: 7494191
+url: https://alessandro.shinyapps.io/kmeans/
+when: 1690280303.29433
+lastSyncTime: 1690280303.29434
+asMultiple: FALSE
+asStatic: FALSE

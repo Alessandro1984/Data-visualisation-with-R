@@ -1,0 +1,144 @@
+---
+title: 'Lesson 14'
+subtitle: 'Data visualisation with R'
+author: "Alessandro Bramucci"
+date: "`r format(Sys.time(), '%d-%m-%Y')`"
+runtime: shiny
+output: 
+  bookdown::html_document2:
+---
+
+```{r setup, include=FALSE}
+library(shiny)
+library(dplyr)
+library(tidyr)
+library(plotly)
+library(shinycssloaders)
+
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+# Embedded Shiny apps
+
+## Inline application
+
+```{r, echo=FALSE}
+
+vars <- setdiff(names(iris), "Species")
+
+shinyApp(
+
+pageWithSidebar(
+  
+  headerPanel('Iris k-means clustering'),
+  
+  sidebarPanel(
+    selectInput('xcol', 'X Variable', choices = vars, selected = "Sepal.Width"), 
+    selectInput('ycol', 'Y Variable', choices = vars, selected = "Sepal.Length"),
+      checkboxInput("centers", "Select number of clusters", FALSE),
+    conditionalPanel(condition = "input.centers", 
+      sliderInput('clusters', 'Cluster count', 1, min = 1, max = 9)
+    )
+  ),
+  
+  mainPanel(
+    plotlyOutput('plot1')
+  )
+  
+),
+
+server = function(input, output, session) {
+  
+  observe({
+    vars_x <- setdiff(names(iris), c("Species", input$xcol))
+    updateSelectInput(session, 'ycol', choices = vars_x, selected = input$ycol)
+  })
+  
+  observe({
+    vars_y <- setdiff(names(iris), c("Species", input$ycol))
+    updateSelectInput(session, 'xcol', choices = vars_y, selected = input$xcol)
+  })
+
+  selectedData <- reactive({
+    iris[, c(input$xcol, input$ycol)]
+  })
+
+  clusters <- reactive({
+    kmeans(selectedData(), input$clusters)
+  })
+  
+  my_colors <- reactive({
+    c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3",
+      "#FF7F00", "#FFFF33", "#A65628", "#F781BF", "#999999")[1:input$clusters]
+  })
+
+  output$plot1 <- renderPlotly({
+    
+    p <- plot_ly() %>% 
+      add_trace(x = selectedData()[[1]],
+                y = selectedData()[[2]],
+                type = "scatter",
+                mode = "markers",
+                colors = my_colors(),
+                color = as.factor(clusters()$cluster),
+                marker = list(size = 10)) %>% 
+  layout(xaxis = list(title = input$xcol,
+                      dtick = 0.5),
+         yaxis = list(title = input$ycol,
+                      dtick = 0.5),
+         showlegend = FALSE) %>%
+  config(displayModeBar = F)
+
+    if (input$centers == TRUE) {
+      
+      p <- p %>%
+        add_trace(x = clusters()$centers[,1],
+                  y = clusters()$centers[,2],
+                  type = "scatter",
+                  mode = "markers",
+                  name = "Center",
+                  marker = list(symbol = "x",
+                                size = 20,
+                                color = "black"))
+      
+    }
+    
+    p
+    
+  })
+
+},
+
+  options = list(height = 500)
+
+)
+
+```
+
+## External applications
+
+```{r, out.width = 900}
+
+knitr::include_app("https://gallery.shinyapps.io/050-kmeans-example/", height = 500)
+
+```
+
+# Useful links and resources
+
+The basics of the k means clustering:
+
+- https://uc-r.github.io/kmeans_clustering
+
+K means example in Shiny:
+
+- https://shiny.posit.co/r/gallery/start-simple/kmeans-example/
+
+How to embedd a Shiny app in an rmarkdown / bookdown document:
+
+- https://bookdown.org/yihui/rmarkdown/shiny-embedded.html
+
+- https://bookdown.org/yihui/bookdown/web-pages-and-shiny-apps.html
