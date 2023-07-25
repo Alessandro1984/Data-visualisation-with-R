@@ -9,6 +9,7 @@ library(eurostat)
 # Remove '#' and change to your favorite directory (or just save in the wd)
 # saveRDS(COFOG, file = "Lesson 14 - 25.07.2023/COFOG.rds")
 
+# Change path to file
 COFOG <- readRDS(file = "Lesson 14 - 25.07.2023/COFOG.rds") 
 
 df_total_exp <- COFOG %>% 
