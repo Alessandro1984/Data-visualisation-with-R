@@ -40,3 +40,6 @@ vignettes/*.pdf
 
 # Gitignore R cheat sheets
 cheat_sheets/
+
+# Gitignore COFOG
+Lesson 14 - 25.07.2023/COFOG.rds
