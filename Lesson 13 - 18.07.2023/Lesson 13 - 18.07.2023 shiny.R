@@ -13,6 +13,7 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       tabsetPanel(
+        # First panel
         tabPanel("Year",
                  br(),
       sliderInput("year", 
@@ -23,6 +24,7 @@ ui <- fluidPage(
                   step = 1,
                   sep = "",
                   animate = TRUE)),
+      # Second panel
       tabPanel("Info",
                helpText("Values in percent of total export. Source: Atlas of economic complexity."))
     )

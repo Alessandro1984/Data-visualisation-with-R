@@ -1,0 +1,14 @@
+name: german_export
+title: german_export
+username:
+account: mgwk
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9473630
+bundleId: 7471256
+url: https://mgwk.shinyapps.io/german_export/
+when: 1689695195.67745
+lastSyncTime: 1689695195.67746
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Lesson 13 - 18.07.2023 data.R|Lesson 13 - 18.07.2023 graph.R|data_csv
