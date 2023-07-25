@@ -5,9 +5,9 @@ account: alessandro
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9505174
-bundleId: 7494191
+bundleId: 7494289
 url: https://alessandro.shinyapps.io/kmeans/
-when: 1690280303.29433
-lastSyncTime: 1690280303.29434
+when: 1690282675.29368
+lastSyncTime: 1690282675.29369
 asMultiple: FALSE
 asStatic: FALSE

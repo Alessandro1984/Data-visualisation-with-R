@@ -11,9 +11,7 @@ output:
 ```{r setup, include=FALSE}
 library(shiny)
 library(dplyr)
-library(tidyr)
 library(plotly)
-library(shinycssloaders)
 
 knitr::opts_chunk$set(
 	echo = FALSE,
@@ -25,6 +23,8 @@ knitr::opts_chunk$set(
 # Embedded Shiny apps
 
 ## Inline application
+
+Modified version of the k-means clustering Shiny app using the *iris* dataset.
 
 ```{r, echo=FALSE}
 
@@ -119,7 +119,9 @@ server = function(input, output, session) {
 
 ```
 
-## External applications
+## External application
+
+Original version of the k-means clustering Shiny app developed by [Carson Sievert](https://github.com/cpsievert).
 
 ```{r, out.width = 900}
 
@@ -129,11 +131,11 @@ knitr::include_app("https://gallery.shinyapps.io/050-kmeans-example/", height = 
 
 # Useful links and resources
 
-The basics of the k means clustering:
+The basics of the k-means clustering:
 
 - https://uc-r.github.io/kmeans_clustering
 
-K means example in Shiny:
+K-means example in Shiny:
 
 - https://shiny.posit.co/r/gallery/start-simple/kmeans-example/
 
