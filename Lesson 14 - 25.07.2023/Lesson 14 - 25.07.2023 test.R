@@ -12,10 +12,6 @@ minmax <- function(x) {
   (x - min(x)) / (max(x) - min(x))
 }
 
-gr_rate <- function(x) {
-  c(NA, diff(x)) / lag(x) * 100
-}
-
 data_2007_scaled <- data_2007 %>% 
   mutate(across(where(is.numeric), minmax))
 
