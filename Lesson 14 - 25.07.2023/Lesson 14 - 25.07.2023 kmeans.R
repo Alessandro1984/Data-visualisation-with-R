@@ -1,6 +1,8 @@
 library(dplyr)
 library(purrr)
 
+set.seed(12345)
+
 str(iris)
 
 # Drop the species column
@@ -22,7 +24,7 @@ minmax <- function(x) {
 
 # Scale data
 df_scaled <- df %>% 
-  mutate(across(everything(), standard_scalar))
+  mutate(across(everything(), minmax))
 
 # Plot scaled data
 plot(as.data.frame(df_scaled))
@@ -50,13 +52,13 @@ plot(k.values, wss_values,
 axis(1, at = seq(1, 9, by = 1))
 
 # Fit clusters
-fitK <- kmeans(df_scaled, 2)
+fitK <- kmeans(df_scaled, 3)
 
 # What is saved in fitK?
 fitK
 
 # Let's plot again the data with color corresponding to the different clusters
-plot(df_scaled, col = fitK$cluster) 
+plot(df_scaled, col = fitK$cluster)
 
 # Apparently the third type of iris is difficult to detect..
 
