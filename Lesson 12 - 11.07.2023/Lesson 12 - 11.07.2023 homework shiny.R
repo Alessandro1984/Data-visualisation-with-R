@@ -7,7 +7,7 @@ ui <- fluidPage(
   
   titlePanel("Simulations of a random walk process"),
   h5(HTML("Based on Heiss, F. <i>Using R for Introductory Econometrics</i>, pp. 200-202."), tags$a(href="https://www.urfie.net/", "https://www.urfie.net/")),
-  h5("R Shiny by", tags$a(href = "https://www.alessandrobramucci.com/", tags$i("Alessandro Bramucci",))),
+  h5("R Shiny by", tags$a(href = "https://www.alessandrobramucci.com/", tags$i("Alessandro Bramucci"))),
   
   sidebarLayout(
     sidebarPanel(
